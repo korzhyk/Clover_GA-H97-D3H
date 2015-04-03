@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SMBIOS</key>
+	<dict>
+		<key>BiosReleaseDate</key>
+		<string>09/03/2013</string>
+		<key>BiosVendor</key>
+		<string>Apple Inc.</string>
+		<key>BiosVersion</key>
+		<string>IM142.88Z.0118.B00.1309031249</string>
+		<key>Board-ID</key>
+		<string>Mac-27ADBB7B4CEE8E61</string>
+		<key>BoardManufacturer</key>
+		<string>Apple Inc.</string>
+		<key>BoardType</key>
+		<integer>10</integer>
+		<key>ChassisAssetTag</key>
+		<string>iMac-Aluminum</string>
+		<key>ChassisManufacturer</key>
+		<string>Apple Inc.</string>
+		<key>ChassisType</key>
+		<string>13</string>
+		<key>Family</key>
+		<string>iMac</string>
+		<key>Manufacturer</key>
+		<string>Apple Inc.</string>
+		<key>ProductName</key>
+		<string>iMac14,2</string>
+		<key>SerialNumber</key>
+		<string>MAKE YOUR SERIAL NUMBER</string>
+		<key>Trust</key>
+		<false/>
+		<key>Version</key>
+		<string>1.0</string>
+	</dict>
+</dict>
+</plist>
