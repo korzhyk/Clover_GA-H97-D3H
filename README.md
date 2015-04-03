@@ -5,7 +5,7 @@ My Hack specs:
 
 ![My hackintosh specs][System Info]
 
-* [Clover r3193][Clover current revision]
+* Clover r3193
 * Intel i5-4570
 * Gigabyte GA-H97-D3H (Clover vendor mobo is H97-D3H-CF)
 * Gigabyte HD6870 OC 1GB with UEFI BIOS (patched original F5 bios)
