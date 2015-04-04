@@ -58,8 +58,6 @@
 				<dict>
 					<key>H97-D3H-CF</key>
 					<dict>
-						<key>Check Infinitely</key>
-						<false/>
 						<key>Codec Address Number</key>
 						<integer>2</integer>
 					</dict>
