@@ -21,7 +21,7 @@ My Hack specs:
 
 # What working
 
-* Fast boot (Ultra fast) - in BIOS
+* UEFI boot, Fast boot (Ultra fast) - in BIOS
 * Sound (5.1, mic, front panel headphones) with [toleda/audio_CloverALC][CloverALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
 * Sleep/Wake
 * [Boot Windows 8.1][Windows Boot] from `System preferences` and CLOVER
