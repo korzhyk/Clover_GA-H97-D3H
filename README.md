@@ -8,7 +8,7 @@ My Hack specs:
 * Clover r3193
 * Intel i5-4570 with HD4600
 * Gigabyte GA-H97-D3H (Clover identify mobo as H97-D3H-CF)
-* Gigabyte HD6870 OC 1GB with UEFI BIOS (patched original F5 bios)
+* Gigabyte HD6870 OC 1GB (currently work with CSM support)
 * 16GB (2 × 8GB) RAM Curcial Balistix Sport
 * SiliconPower S70 120GB - OSX
 * Samsung 840 EVO 120GB - Windows 8.1
