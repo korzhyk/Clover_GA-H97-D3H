@@ -18,13 +18,9 @@
 					<key>Comment</key>
 					<string>GFX0 -&gt; IGPU</string>
 					<key>Find</key>
-					<data>
-					R0ZYMA==
-					</data>
+					<data>R0ZYMA==</data>
 					<key>Replace</key>
-					<data>
-					SUdQVQ==
-					</data>
+					<data>SUdQVQ==</data>
 				</dict>
 			</array>
 			<key>ReuseFFFF</key>
@@ -130,7 +126,7 @@
 			<false/>
 		</dict>
 		<key>ScreenResolution</key>
-		<string>1920x1440</string>
+		<string>2560x1440</string>
 		<key>Theme</key>
 		<string>mavs style</string>
 	</dict>
@@ -158,29 +154,21 @@
 				<key>Comment</key>
 				<string>t1-10.9-10.10-AppleHDA/Realtek ALC1150</string>
 				<key>Find</key>
-				<data>
-				ixnUEQ==
-				</data>
+				<data>ixnUEQ==</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				AAnsEA==
-				</data>
+				<data>AAnsEA==</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>t1-10.9-10.10-AppleHDA/Resources/xml&gt;zml</string>
 				<key>Find</key>
-				<data>
-				eG1sLnps
-				</data>
+				<data>eG1sLnps</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>
-				em1sLnps
-				</data>
+				<data>em1sLnps</data>
 			</dict>
 		</array>
 	</dict>
