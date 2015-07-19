@@ -108,50 +108,42 @@
 				</dict>
 				<key>Realtek ALC1150</key>
 				<dict>
-          <key>Check Infinitely</key>
-          <false/>
-          <key>Codec Id</key>
-          <array>
-              <string>0x10ec0900</string>
-          </array>
-          <key>Custom Commands</key>
-          <array>
-              <dict>
-                  <key>Command</key>
-                  <data>
-                  AgUABw==
-                  </data>
-                  <key>Comment</key>
-                  <string>SET_COEF_INDEX</string>
-                  <key>On Init</key>
-                  <true/>
-                  <key>On Sleep</key>
-                  <true/>
-                  <key>On Wake</key>
-                  <true/>
-              </dict>
-              <dict>
-                  <key>Command</key>
-                  <data>
-                  AgR8sA==
-                  </data>
-                  <key>Comment</key>
-                  <string>SET_PROC_COEF</string>
-                  <key>On Init</key>
-                  <true/>
-                  <key>On Sleep</key>
-                  <false/>
-                  <key>On Wake</key>
-                  <true/>
-              </dict>
-          </array>
-          <key>Perform Reset</key>
-          <true/>
-          <key>Send Delay</key>
-          <integer>100</integer>
-          <key>Sleep Nodes</key>
-          <false/>
-        </dict>
+					<key>Check Infinitely</key>
+					<false/>
+					<key>Custom Commands</key>
+					<array>
+						<dict>
+							<key>Command</key>
+							<data>AgUABw==</data>
+							<key>Comment</key>
+							<string>SET_COEF_INDEX</string>
+							<key>On Init</key>
+							<true/>
+							<key>On Sleep</key>
+							<true/>
+							<key>On Wake</key>
+							<true/>
+						</dict>
+						<dict>
+							<key>Command</key>
+							<data>AgR8sA==</data>
+							<key>Comment</key>
+							<string>SET_PROC_COEF</string>
+							<key>On Init</key>
+							<true/>
+							<key>On Sleep</key>
+							<false/>
+							<key>On Wake</key>
+							<true/>
+						</dict>
+					</array>
+					<key>Perform Reset</key>
+					<true/>
+					<key>Send Delay</key>
+					<integer>100</integer>
+					<key>Sleep Nodes</key>
+					<false/>
+				</dict>
 				<key>Realtek ALC269</key>
 				<dict>
 					<key>Custom Commands</key>
