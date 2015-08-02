@@ -26,7 +26,7 @@ My Hack specs:
 * UEFI boot, Fast boot (Ultra fast) - in BIOS
 * Sound (5.1, mic, front panel headphones) with [toleda/audio_CloverALC][CloverALC] and [EADP Codec Commander v2.4.0][EADP] (fix audio after sleep)
 * Sleep/Wake
-* [Boot Windows 8.1][Windows Boot] from `System preferences` and CLOVER
+* [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
 
 # Issues
 On 4 May 2015 I recieved an UEFI GOP Ready bios for my GV-R687OC-1GD. But [this][R687OGD.F6] BIOS has some issues, as glitching when GPU is Idle (the trouble is very low core and memory clocks). And for resolve this glitching I use [RBE][RBE] for adjust Core and Memory clocks to higer values. And the result of my work is [fixed UEFI GOP][MOD_R687OGD.F6] ready BIOS for GV-R687OC-1GD with clocks of GV-R687SO-1GD.
