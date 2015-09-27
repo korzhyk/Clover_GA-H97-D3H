@@ -16,11 +16,27 @@
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>GFX0 -&gt; IGPU</string>
+					<string>PWRB _HID to _CID</string>
 					<key>Find</key>
-					<data>R0ZYMA==</data>
+					<data>
+					UFdSQghfSA==
+					</data>
 					<key>Replace</key>
-					<data>SUdQVQ==</data>
+					<data>
+					UFdSQghfQw==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>GFX0 to IGPU</string>
+					<key>Find</key>
+					<data>
+					R0ZYMA==
+					</data>
+					<key>Replace</key>
+					<data>
+					SUdQVQ==
+					</data>
 				</dict>
 			</array>
 			<key>ReuseFFFF</key>
@@ -30,7 +46,9 @@
 		<array>
 			<dict>
 				<key>Signature</key>
-				<string>BGRT</string>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>CpuPm</string>
 			</dict>
 			<dict>
 				<key>Signature</key>
@@ -38,9 +56,7 @@
 			</dict>
 			<dict>
 				<key>Signature</key>
-				<string>SSDT</string>
-				<key>TableId</key>
-				<string>CpuPm</string>
+				<string>BGRT</string>
 			</dict>
 			<dict>
 				<key>Signature</key>
@@ -62,7 +78,7 @@
 		<key>Arguments</key>
 		<string>kext-dev-mode=1</string>
 		<key>Debug</key>
-		<true/>
+		<false/>
 		<key>DefaultLoader</key>
 		<string>boot.efi</string>
 		<key>DefaultVolume</key>
@@ -94,8 +110,8 @@
 	<key>DisableDrivers</key>
 	<array>
 		<string>Nothing</string>
-		<string>CsmVideoDxe</string>
 		<string>EmuVariableUefi</string>
+		<string>CsmVideoDxe</string>
 	</array>
 	<key>GUI</key>
 	<dict>
@@ -141,6 +157,8 @@
 			<key>NVidia</key>
 			<false/>
 		</dict>
+		<key>NvidiaSingle</key>
+		<false/>
 		<key>ig-platform-id</key>
 		<string>0x0D220003</string>
 	</dict>
@@ -148,27 +166,47 @@
 	<dict>
 		<key>AppleRTC</key>
 		<false/>
+		<key>AsusAICPUPM</key>
+		<false/>
+		<key>Debug</key>
+		<false/>
+		<key>KernelCpu</key>
+		<false/>
+		<key>KernelHaswellE</key>
+		<false/>
+		<key>KernelLapic</key>
+		<false/>
+		<key>KernelPm</key>
+		<false/>
 		<key>KextsToPatch</key>
 		<array>
 			<dict>
 				<key>Comment</key>
 				<string>t1-10.9-10.10-AppleHDA/Realtek ALC1150</string>
 				<key>Find</key>
-				<data>ixnUEQ==</data>
+				<data>
+				ixnUEQ==
+				</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>AAnsEA==</data>
+				<data>
+				AAnsEA==
+				</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>t1-10.9-10.10-AppleHDA/Resources/xml&gt;zml</string>
 				<key>Find</key>
-				<data>eG1sLnps</data>
+				<data>
+				eG1sLnps
+				</data>
 				<key>Name</key>
 				<string>AppleHDA</string>
 				<key>Replace</key>
-				<data>em1sLnps</data>
+				<data>
+				em1sLnps
+				</data>
 			</dict>
 		</array>
 	</dict>
