@@ -8,7 +8,7 @@ My Hack specs:
 * Clover r3330
 * Intel i7-4770S with HD4600
 * Gigabyte GA-H97-D3H (Clover identify mobo as H97-D3H-CF)
-* Zotac GTX 980 ti AMP! 6GB
+* Zotac GTX 980 ti AMP! 6GB (nVidia web driver 346.02.03f04)
 * 16GB (2 × 8GB) RAM Curcial Balistix Sport
 * SiliconPower S70 120GB - OSX
 * Samsung 840 EVO 120GB - Windows 8.1
