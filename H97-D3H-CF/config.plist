@@ -257,6 +257,20 @@
 				em1sLnps
 				</data>
 			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>USB 3.0 limit 16 to 22 devices</string>
+				<key>Find</key>
+				<data>
+				g72M/v//EA==
+				</data>
+				<key>Name</key>
+				<string>AppleUSBXHCIPCI</string>
+				<key>Replace</key>
+				<data>
+				g72M/v//Fg==
+				</data>
+			</dict>
 		</array>
 	</dict>
 	<key>RtVariables</key>
