@@ -28,6 +28,10 @@ My Hack specs:
 * Sleep/Wake
 * [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
 
+# CodecCommander
+
+CodecCommander **must** be installed in /S/L/E!!1
+
 [EADP]: https://applelife.ru/threads/eapd-codec-commander.41696/
 [CloverALC]: https://github.com/toleda/audio_CloverALC
 [Clover]: http://sourceforge.net/projects/cloverefiboot/
