@@ -16,19 +16,9 @@
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>PWRB _HID to _CID</string>
-					<key>Find</key>
-					<data>
-					UFdSQghfSA==
-					</data>
-					<key>Replace</key>
-					<data>
-					UFdSQghfQw==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>GFX0 to IGPU</string>
+					<key>Disabled</key>
+					<false/>
 					<key>Find</key>
 					<data>
 					R0ZYMA==
@@ -96,6 +86,8 @@
 	<dict>
 		<key>Audio</key>
 		<dict>
+			<key>AFGLowPowerState</key>
+			<true/>
 			<key>Inject</key>
 			<string>1</string>
 		</dict>
@@ -109,9 +101,8 @@
 	</dict>
 	<key>DisableDrivers</key>
 	<array>
-		<string>Nothing</string>
-		<string>EmuVariableUefi</string>
 		<string>CsmVideoDxe</string>
+		<string>EmuVariableUefi</string>
 	</array>
 	<key>GUI</key>
 	<dict>
@@ -182,7 +173,65 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>t1-10.9-10.10-AppleHDA/Realtek ALC1150</string>
+				<string>HD4600 fix for 10.11</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				4OsV
+				</data>
+				<key>Name</key>
+				<string>IOGraphicsFamily</string>
+				<key>Replace</key>
+				<data>
+				4Os4
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>t1-HD4600_HDMI_Audio-2of2</string>
+				<key>Find</key>
+				<data>
+				PQwKAAA=
+				</data>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>
+				PQwMAAA=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>t1-HD4600_HDMI_Audio-1of2</string>
+				<key>Find</key>
+				<data>
+				PQsMAAA=
+				</data>
+				<key>Name</key>
+				<string>AppleHDAController</string>
+				<key>Replace</key>
+				<data>
+				PQwMAAA=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>t1-10.11-AppleHDA/Realtek ALC...</string>
+				<key>Find</key>
+				<data>
+				gxnUEQ==
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				AAAAAA==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>t1-10.9-10.11-AppleHDA/Realtek ALC1150</string>
 				<key>Find</key>
 				<data>
 				ixnUEQ==
@@ -196,7 +245,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>t1-10.9-10.10-AppleHDA/Resources/xml&gt;zml</string>
+				<string>t1-AppleHDA/Resources/xml&gt;zml</string>
 				<key>Find</key>
 				<data>
 				eG1sLnps
