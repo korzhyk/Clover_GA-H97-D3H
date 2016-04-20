@@ -38,6 +38,12 @@
 				<key>Signature</key>
 				<string>SSDT</string>
 				<key>TableId</key>
+				<string>Cpu0Ist</string>
+			</dict>
+			<dict>
+				<key>Signature</key>
+				<string>SSDT</string>
+				<key>TableId</key>
 				<string>CpuPm</string>
 			</dict>
 			<dict>
@@ -47,12 +53,6 @@
 			<dict>
 				<key>Signature</key>
 				<string>BGRT</string>
-			</dict>
-			<dict>
-				<key>Signature</key>
-				<string>SSDT</string>
-				<key>TableId</key>
-				<string>Cpu0Ist</string>
 			</dict>
 		</array>
 		<key>SSDT</key>
@@ -86,8 +86,6 @@
 	<dict>
 		<key>Audio</key>
 		<dict>
-			<key>AFGLowPowerState</key>
-			<true/>
 			<key>Inject</key>
 			<string>1</string>
 		</dict>
@@ -135,7 +133,7 @@
 		<key>ScreenResolution</key>
 		<string>2560x1440</string>
 		<key>Theme</key>
-		<string>mavs style</string>
+		<string>lightup</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
@@ -189,77 +187,9 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>t1-HD4600_HDMI_Audio-2of2</string>
-				<key>Find</key>
-				<data>
-				PQwKAAA=
-				</data>
-				<key>Name</key>
-				<string>AppleHDAController</string>
-				<key>Replace</key>
-				<data>
-				PQwMAAA=
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>t1-HD4600_HDMI_Audio-1of2</string>
-				<key>Find</key>
-				<data>
-				PQsMAAA=
-				</data>
-				<key>Name</key>
-				<string>AppleHDAController</string>
-				<key>Replace</key>
-				<data>
-				PQwMAAA=
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>t1-10.11-AppleHDA/Realtek ALC...</string>
-				<key>Find</key>
-				<data>
-				gxnUEQ==
-				</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
-				<key>Replace</key>
-				<data>
-				AAAAAA==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>t1-10.9-10.11-AppleHDA/Realtek ALC1150</string>
-				<key>Find</key>
-				<data>
-				ixnUEQ==
-				</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
-				<key>Replace</key>
-				<data>
-				AAnsEA==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>t1-AppleHDA/Resources/xml&gt;zml</string>
-				<key>Find</key>
-				<data>
-				eG1sLnps
-				</data>
-				<key>Name</key>
-				<string>AppleHDA</string>
-				<key>Replace</key>
-				<data>
-				em1sLnps
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>USB 3.0 limit 16 to 22 devices</string>
+				<string>change 15 port limit to 30 in XHCI kext (9-series)</string>
+				<key>Disabled</key>
+				<false/>
 				<key>Find</key>
 				<data>
 				g72M/v//EA==
@@ -268,7 +198,7 @@
 				<string>AppleUSBXHCIPCI</string>
 				<key>Replace</key>
 				<data>
-				g72M/v//Fg==
+				g72M/v//Hw==
 				</data>
 			</dict>
 		</array>
