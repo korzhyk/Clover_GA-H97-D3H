@@ -20,7 +20,7 @@ My Hack specs:
 2. SATA Mode - **AHCI**
 3. XHCI Hand-off - **Enabled**
 
-  *Or you can use [my BIOS settings][BIOS-Setup] profile.*
+*Or you can use [my BIOS settings][BIOS-Setup] profile.*
 
 # What working
 
