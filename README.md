@@ -18,7 +18,7 @@ My Hack specs:
 
 1. Intel Virtualization Technology (Vanderpool Technology, Vd-T) - **Disabled**
 2. SATA Mode - **AHCI**
-3. 3. XHCI Hand-off - **Enabled**
+3. XHCI Hand-off - **Enabled**
 
   *Or you can use [my BIOS settings][BIOS-Setup] profile.*
 
