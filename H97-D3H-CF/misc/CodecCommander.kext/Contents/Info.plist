@@ -109,7 +109,9 @@
 				<key>Realtek ALC1150</key>
 				<dict>
 					<key>Check Infinitely</key>
-					<false/>
+					<true/>
+					<key>Check Interval</key>
+					<integer>5000</integer>
 					<key>Custom Commands</key>
 					<array>
 						<dict>
