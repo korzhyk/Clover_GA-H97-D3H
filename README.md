@@ -1,6 +1,10 @@
 # Intro
 
+<<<<<<< HEAD
 This is my working config for [CLOVER][Clover] of Hackintosh (El Capitan 10.11.5).
+=======
+This is my working [CLOVER][Clover] config for Hackintosh (El Capitan 10.11.4).
+>>>>>>> origin/master
 My Hack specs:
 
 ![My hackintosh specs][System Info]
@@ -20,7 +24,7 @@ My Hack specs:
 2. SATA Mode - **AHCI**
 3. XHCI Hand-off - **Enabled**
 
-  *Or you can use [my BIOS settings][BIOS-Setup] profile.*
+*Or you can use [my BIOS settings][BIOS-Setup] profile.*
 
 # What working
 
