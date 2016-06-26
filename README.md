@@ -29,7 +29,7 @@ My Hack specs:
 # What working
 
 * UEFI boot, Fast boot (Ultra fast) - in BIOS
-* Sound (5.1, mic, front panel headphones) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
+* Audio (5.1, mic, front panel headphones, HDMI HD4600 & GTX980ti) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
 * Sleep/Wake
 * [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
 
