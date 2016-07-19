@@ -1,10 +1,6 @@
 # Intro
 
-<<<<<<< HEAD
-This is my working config for [CLOVER][Clover] of Hackintosh (El Capitan 10.11.5).
-=======
-This is my working [CLOVER][Clover] config for Hackintosh (El Capitan 10.11.4).
->>>>>>> origin/master
+This is my working config for [CLOVER][Clover] of Hackintosh (El Capitan 10.11.6).
 My Hack specs:
 
 ![My hackintosh specs][System Info]
