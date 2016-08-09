@@ -1,10 +1,6 @@
 # Intro
 
-<<<<<<< HEAD
-This is my working config for [CLOVER][Clover] of Hackintosh (El Capitan 10.11.5).
-=======
-This is my working [CLOVER][Clover] config for Hackintosh (El Capitan 10.11.4).
->>>>>>> origin/master
+This is my working config for [CLOVER][Clover] of Hackintosh (El Capitan 10.11.6).
 My Hack specs:
 
 ![My hackintosh specs][System Info]
@@ -29,7 +25,7 @@ My Hack specs:
 # What working
 
 * UEFI boot, Fast boot (Ultra fast) - in BIOS
-* Sound (5.1, mic, front panel headphones) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
+* Audio (5.1, mic, front panel headphones, HDMI HD4600 & GTX980ti) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
 * Sleep/Wake
 * [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
 
