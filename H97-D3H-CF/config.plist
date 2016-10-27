@@ -20,13 +20,9 @@
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					R0ZYMA==
-					</data>
+					<data>R0ZYMA==</data>
 					<key>Replace</key>
-					<data>
-					SUdQVQ==
-					</data>
+					<data>SUdQVQ==</data>
 				</dict>
 			</array>
 			<key>ReuseFFFF</key>
@@ -87,7 +83,7 @@
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
-			<string>1</string>
+			<string>7</string>
 		</dict>
 		<key>USB</key>
 		<dict>
@@ -175,15 +171,11 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				4OsV
-				</data>
+				<data>4OsV</data>
 				<key>Name</key>
 				<string>IOGraphicsFamily</string>
 				<key>Replace</key>
-				<data>
-				4Os4
-				</data>
+				<data>4Os4</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -191,15 +183,11 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				g72M/v//EA==
-				</data>
+				<data>g72M/v//EA==</data>
 				<key>Name</key>
 				<string>AppleUSBXHCIPCI</string>
 				<key>Replace</key>
-				<data>
-				g72M/v//Hw==
-				</data>
+				<data>g72M/v//Hw==</data>
 			</dict>
 		</array>
 	</dict>
