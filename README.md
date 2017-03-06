@@ -38,13 +38,12 @@ My Hack specs:
 
 * UEFI boot, Fast boot (Ultra fast) - in BIOS
 * Apple boot logo is in! Use [My moded BIOS][BIOS_MOD] for bios apple logo
-* Audio (5.1, mic, front panel headphones, HDMI HD4600 & GTX980ti) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep **only for 10.11**)
+* Audio (5.1, mic, front panel headphones, HDMI HD4600 & GTX980ti) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
 * Sleep/Wake
 * [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
 
 ## CodecCommander
 
-Only for El Capitan 10.11
 CodecCommander **must** be installed in /S/L/E!!1
 
 ## Lilu.kext, Shiki.kext and IntelGraphicsFixup.kext
@@ -52,7 +51,7 @@ CodecCommander **must** be installed in /S/L/E!!1
 For more information about `Lilu` follow this link [Lilu github][Lilu]
 
 
-[EADP]: https://applelife.ru/threads/eapd-codec-commander.41696/
+[EADP]: https://bitbucket.org/RehabMan/os-x-eapd-codec-commander
 [AppleALC]: https://github.com/vit9696/AppleALC
 [Lilu]: https://github.com/vit9696/Lilu
 [Clover]: http://sourceforge.net/projects/cloverefiboot/
