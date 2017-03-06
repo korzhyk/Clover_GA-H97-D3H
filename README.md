@@ -37,7 +37,7 @@ My Hack specs:
 ## What working
 
 * UEFI boot, Fast boot (Ultra fast) - in BIOS
-* Apple boot logo is in! Use ![this BIOS][BIOS_MOD] for bios apple logo
+* Apple boot logo is in! Use [My moded BIOS][BIOS_MOD] for bios apple logo
 * Audio (5.1, mic, front panel headphones, HDMI HD4600 & GTX980ti) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep **only for 10.11**)
 * Sleep/Wake
 * [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
