@@ -42,16 +42,12 @@ My Hack specs:
 * Sleep/Wake
 * [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
 
-## CodecCommander
-
-CodecCommander **must** be installed in /S/L/E!!1
-
 ## Lilu.kext, Shiki.kext and IntelGraphicsFixup.kext
 
 For more information about `Lilu` follow this link [Lilu github][Lilu]
 
 
-[EADP]: https://bitbucket.org/RehabMan/os-x-eapd-codec-commander
+[EADP]: https://github.com/RehabMan/EAPD-Codec-Commander
 [AppleALC]: https://github.com/vit9696/AppleALC
 [Lilu]: https://github.com/vit9696/Lilu
 [Clover]: http://sourceforge.net/projects/cloverefiboot/

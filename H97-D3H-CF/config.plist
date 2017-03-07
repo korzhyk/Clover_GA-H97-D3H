@@ -8,8 +8,12 @@
 		<dict>
 			<key>Fixes</key>
 			<dict>
-				<key>FIX_INTELGFX_100000</key>
-				<true/>
+	          <key>FIX_ACST_4000000</key>
+	          <true/>
+	          <key>FIX_INTELGFX_100000</key>
+	          <true/>
+	          <key>FixHPET_0010</key>
+	          <true/>
 			</dict>
 		</dict>
 		<key>SSDT</key>
@@ -68,50 +72,56 @@
 		<string>en:0</string>
 		<key>Scan</key>
 		<dict>
-			<key>Entries</key>
-			<true/>
-			<key>Linux</key>
-			<true/>
-			<key>Tool</key>
-			<true/>
+			<key>Legacy</key>
+			<false/>
 		</dict>
-	</dict>
-	<key>KernelAndKextPatches</key>
-	<dict>
-		<key>KextsToPatch</key>
-		<array>
-			<dict>
-				<key>Comment</key>
-				<string>XHCI kext for 10.11</string>
-				<key>Find</key>
-				<data>g72M/v//EA==</data>
-				<key>MatchOS</key>
-				<string>10.11</string>
-				<key>Name</key>
-				<string>AppleUSBXHCIPCI</string>
-				<key>Replace</key>
-				<data>g72M/v//Hw==</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>EHCI for Sierra</string>
-				<key>Find</key>
-				<data>cG9ydHM=</data>
-				<key>MatchOS</key>
-				<string>10.12</string>
-				<key>Name</key>
-				<string>AppleUSBHub</string>
-				<key>Replace</key>
-				<data>AAAAAAA=</data>
-			</dict>
-		</array>
-	</dict>
-	<key>SystemParameters</key>
-	<dict>
-		<key>InjectKexts</key>
-		<true/>
-		<key>NvidiaWeb</key>
-		<true/>
-	</dict>
-</dict>
+    </dict>
+    <key>KernelAndKextPatches</key>
+    <dict>
+      <key>KextsToPatch</key>
+      <array>
+        <dict>
+          <key>Find</key>
+          <data>4OsV</data>
+          <key>MatchOS</key>
+          <string>10.11</string>
+          <key>Name</key>
+          <string>IOGraphicsFamily</string>
+          <key>Replace</key>
+          <data>4Os4</data>
+        </dict>
+        <dict>
+          <key>Comment</key>
+          <string>XHCI kext for 10.11</string>
+          <key>Find</key>
+          <data>g72M/v//EA==</data>
+          <key>MatchOS</key>
+          <string>10.11</string>
+          <key>Name</key>
+          <string>AppleUSBXHCIPCI</string>
+          <key>Replace</key>
+          <data>g72M/v//Hw==</data>
+        </dict>
+        <dict>
+          <key>Comment</key>
+          <string>EHCI for Sierra</string>
+          <key>Find</key>
+          <data>cG9ydHM=</data>
+          <key>MatchOS</key>
+          <string>10.12</string>
+          <key>Name</key>
+          <string>AppleUSBHub</string>
+          <key>Replace</key>
+          <data>AAAAAAA=</data>
+        </dict>
+      </array>
+    </dict>
+    <key>SystemParameters</key>
+    <dict>
+      <key>InjectKexts</key>
+      <true/>
+      <key>NvidiaWeb</key>
+      <true/>
+    </dict>
+  </dict>
 </plist>
