@@ -121,20 +121,6 @@
 						<dict>
 							<key>Command</key>
 							<data>
-							AbcMAg==
-							</data>
-							<key>Comment</key>
-							<string>0x1B SET_EAPD_BTLENABLE 0x02</string>
-							<key>On Init</key>
-							<false/>
-							<key>On Sleep</key>
-							<false/>
-							<key>On Wake</key>
-							<true/>
-						</dict>
-						<dict>
-							<key>Command</key>
-							<data>
 							AgUABw==
 							</data>
 							<key>Comment</key>
