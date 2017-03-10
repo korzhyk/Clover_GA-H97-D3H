@@ -14,21 +14,13 @@
           <true/>
           <key>AddMCHC_0008</key>
           <true/>
-          <key>FIX_ACST_4000000</key>
-          <true/>
-          <key>FIX_DARWIN_10000</key>
-          <true/>
           <key>FIX_INTELGFX_100000</key>
           <true/>
-          <key>AddHDMI_8000000</key>
-          <true/>
-          <key>FIX_TMR_40000</key>
+          <key>FIX_DARWIN_10000</key>
           <true/>
           <key>FixHPET_0010</key>
           <true/>
           <key>FixSATA_0400</key>
-          <true/>
-          <key>FixHDA_8000</key>
           <true/>
           <key>FixSBUS_0080</key>
           <true/>
