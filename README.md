@@ -9,12 +9,11 @@ My Hack specs:
 * Clover r4035
 * Intel i7-4770S with HD4600
 * Gigabyte GA-H97-D3H (Clover OEM identify mobo as H97-D3H-CF)
-* Zotac GTX 980 ti AMP! 6GB
-* 16GB (2 × 8GB) RAM Curcial Balistix Sport
+* EVGA GTX1080 FTW2 8GB
+* 32GB (4 × 8GB) RAM Curcial Balistix Sport
 * Apple Broadcom BCM94360CD 802.11ac WiFi Bluetooth 4.0 Mini PCI-E
 * Micon M600 512GB (51GB - 10% OverProvisioning, trimforce enable) - macOS
-* Micon M600 512GB (51GB - 10% OverProvisioning, Momentum Cache) - Windows X
-* Segate Baracuda 7200.14 1TB SATA III
+* Micon M600 512GB (51GB - 10% OverProvisioning) - Windows X
 
 ## In BIOS
 
