@@ -1,58 +1,57 @@
 # Intro
 
-This is my working config for [CLOVER][Clover] of Hackintosh (Sierra 10.12.6)
+This is my working config for [CLOVER][Clover] of Hackintosh (Mojave 10.14)
 
 My Hack specs:
 
 ![My hackintosh specs][System Info]
 
-* Clover r4035
+* Clover r4674
 * Intel i7-4770S with HD4600
-* Gigabyte GA-H97-D3H (Clover OEM identify mobo as H97-D3H-CF)
-* Zotac GTX 980 ti AMP! 6GB
+* Gigabyte GA-H97M-D3H and GA-H97-D3H (Clover OEM identify mobo as H97M-D3H and H97-D3H-CF)
 * 16GB (2 × 8GB) RAM Curcial Balistix Sport
-* Apple Broadcom BCM94360CD 802.11ac WiFi Bluetooth 4.0 Mini PCI-E
-* Micon M600 512GB (51GB - 10% OverProvisioning, trimforce enable) - macOS
-* Micon M600 512GB (51GB - 10% OverProvisioning, Momentum Cache) - Windows X
-* Segate Baracuda 7200.14 1TB SATA III
+* Realtek 8112AU USB WiFi dongle
+* SATA Samsung 840 EVO 120GB
 
 ## In BIOS
 
 1. SATA Mode - **AHCI**
-2. XHCI Hand-off - **Enabled**
-3. ~~Intel Virtualization Technology (Vanderpool Technology, Vd-T) - **Disabled**~~ this option was omitted by droping `DMAR` table in Clover config.
+1. XHCI Mode - **Enabled**
+1. XHCI Hand-off - **Enabled**
+1. EHCI Hand-off - **Disabled**
 
 ## The first of all you must complete you Clover config
 
 1. Open in [Cloud Clover Editor][CCE] your `config.plist` from this repo
 2. Go to `SMBIOS` section and select an approximate Mac model (I'm use 14,3 by identical `CPU 4770S` and GPU vendor)
 3. Then go to first menu item `Cloud Clover Editor` and press `Download`
-4. Rename downloaded file to `config.plist` and put with replace to your `OEM` folder
+4. Rename downloaded file to `SMBIOS.plist` and put to your `OEM` folder
 
 ## Clover installation
 
 1. I'm using only `UEFI` boot, in Clover installation check this option.
-2. In drivers section, make sure, that `OsxAptioFix2Drv-64.efi` has checkbox
-3. That's all!
+2. In drivers section, make sure, that `AptioMemoryFix-64.efi` has checkbox.
+3. Did't install any `*SMC*` drivers I use [VirtualSMC][VirtualSMC] instead.
 
 ## What working
 
-* UEFI boot, Fast boot (Ultra fast) - in BIOS
-* Apple boot logo is in! Use [My moded BIOS][BIOS_MOD] for bios apple logo
-* Audio (5.1, mic, front panel headphones, HDMI HD4600 & GTX980ti) with [vit9696/AppleALC][AppleALC] and [EADP Codec Commander][EADP] (fix audio after sleep)
+* QSV
+* Audio (5.1, mic, front panel headphones, HDMI HD4600) with [AppleALC][AppleALC]
 * Sleep/Wake
-* [Boot Windows 10][Windows Boot] from `System preferences` and CLOVER
+* USB - All ports exept one whitch close to LAN port has only USB2.0 interface, you can configure this by editing `Legacy_USB3.kext`
 
-## Lilu.kext, Shiki.kext and IntelGraphicsFixup.kext
+## What under hood?
 
-For more information about `Lilu` follow this link [Lilu github][Lilu]
+* `Lilu` - a great patcher [Lilu][Lilu]
+* `Audio` - [AppleALC][AppleALC]
+* `IGPU & GPU` - [WhateverGreen][WhateverGreen]
+* `SMC` - [VirtualSMC][VirtualSMC]
 
-
-[EADP]: https://github.com/RehabMan/EAPD-Codec-Commander
-[AppleALC]: https://github.com/vit9696/AppleALC
-[Lilu]: https://github.com/vit9696/Lilu
+[Z370]: https://github.com/korzhyk/CLOVER-Z370-AORUS-Gaming-7
+[AppleALC]: https://github.com/acidanthera/AppleALC
+[WhateverGreen]: https://github.com/acidanthera/WhateverGreen
+[VirtualSMC]: https://github.com/acidanthera/VirtualSMC
+[Lilu]: https://github.com/acidanthera/Lilu
 [Clover]: http://sourceforge.net/projects/cloverefiboot/
-[Windows Boot]: ./misc/Screenshots/Bootable_Windows_from_OSX.png
 [System Info]: ./misc/Screenshots/System_Info.png
-[BIOS_MOD]: ./misc/BIOS/MOD_H97D3H.F6
 [CCE]: http://cloudclovereditor.altervista.org/

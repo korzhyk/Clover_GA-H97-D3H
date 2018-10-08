@@ -1,1 +1,0 @@
-Efiflash MOD_H97D3H.F6
