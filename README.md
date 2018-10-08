@@ -17,7 +17,9 @@ My Hack specs:
 ## In BIOS
 
 1. SATA Mode - **AHCI**
+3. XHCI Mode - **Enabled**
 2. XHCI Hand-off - **Enabled**
+2. EHCI Hand-off - **Disabled**
 
 ## The first of all you must complete you Clover config
 
