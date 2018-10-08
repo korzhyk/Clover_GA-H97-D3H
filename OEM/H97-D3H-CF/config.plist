@@ -42,7 +42,7 @@
             </data>
             <key>Replace</key>
             <data>
-            RXAL2gdPU1k=
+            RXAL3QdPU1k=
             </data>
           </dict>
         </array>
@@ -126,7 +126,11 @@
     <dict>
       <key>Inject</key>
       <dict>
+        <key>ATI</key>
+        <false/>
         <key>Intel</key>
+        <false/>
+        <key>NVidia</key>
         <false/>
       </dict>
     </dict>
