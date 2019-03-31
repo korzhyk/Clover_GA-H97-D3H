@@ -46,10 +46,6 @@
       <key>Timeout</key>
       <integer>5</integer>
     </dict>
-    <key>DisableDrivers</key>
-    <array>
-      <string>VirtualSmc</string>
-    </array>
     <key>GUI</key>
     <dict>
       <key>Hide</key>

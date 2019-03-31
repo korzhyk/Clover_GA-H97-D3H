@@ -6224,6 +6224,8 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
     Method (LXDH, 0, NotSerialized)
     {
         \_SB.PCI0.XHC.GPEH ()
+        \_SB.PCI0.EH01.GPEH ()
+        \_SB.PCI0.EH02.GPEH ()
         \_SB.PCI0.HDEF.GPEH ()
         \_SB.PCI0.GLAN.GPEH ()
     }
@@ -7061,6 +7063,222 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
             }
         }
 
+        Device (EH01)
+        {
+            Name (_ADR, 0x001D0000)  // _ADR: Address
+            OperationRegion (PWKE, PCI_Config, Zero, 0x0100)
+            Field (PWKE, AnyAcc, NoLock, Preserve)
+            {
+                DVID,   16,
+                Offset (0x54),
+                Offset (0x55),
+                PMEE,   1,
+                    ,   6,
+                PMES,   1
+            }
+
+            Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
+            {
+                PMEE = Arg0
+            }
+
+            Method (GPEH, 0, NotSerialized)
+            {
+                If ((DVID == 0xFFFF))
+                {
+                    Return (Zero)
+                }
+
+                If ((PMEE && PMES))
+                {
+                    PMES = One
+                    Notify (EH01, 0x02) // Device Wake
+                }
+
+                Return (Zero)
+            }
+
+            Method (_DSM, 4, NotSerialized)  // ZDSM: Device-Specific Method
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer (One)
+                    {
+                         0x03                                             // .
+                    })
+                }
+
+                Return (Package (0x08)
+                {
+                    "kUSBSleepPowerSupply",
+                    0x13EC,
+                    "kUSBSleepPortCurrentLimit",
+                    0x0834,
+                    "kUSBWakePowerSupply",
+                    0x13EC,
+                    "kUSBWakePortCurrentLimit",
+                    0x0834
+                })
+            }
+
+            Device (HUBN)
+            {
+                Name (_ADR, Zero)  // _ADR: Address
+                Device (PR01)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+
+                    Device (PR11)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                    }
+
+                    Device (PR12)
+                    {
+                        Name (_ADR, 0x02)  // _ADR: Address
+                    }
+
+                    Device (PR13)
+                    {
+                        Name (_ADR, 0x03)  // _ADR: Address
+                    }
+
+                    Device (PR14)
+                    {
+                        Name (_ADR, 0x04)  // _ADR: Address
+                    }
+
+                    Device (PR15)
+                    {
+                        Name (_ADR, 0x05)  // _ADR: Address
+                    }
+
+                    Device (PR16)
+                    {
+                        Name (_ADR, 0x06)  // _ADR: Address
+                    }
+
+                    Device (PR17)
+                    {
+                        Name (_ADR, 0x07)  // _ADR: Address
+                    }
+
+                    Device (PR18)
+                    {
+                        Name (_ADR, 0x08)  // _ADR: Address
+                    }
+                }
+            }
+
+            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            {
+                Return (GPRW (0x0D, 0x04))
+            }
+        }
+
+        Device (EH02)
+        {
+            Name (_ADR, 0x001A0000)  // _ADR: Address
+            OperationRegion (PWKE, PCI_Config, Zero, 0x0100)
+            Field (PWKE, AnyAcc, NoLock, Preserve)
+            {
+                DVID,   16,
+                Offset (0x54),
+                Offset (0x55),
+                PMEE,   1,
+                    ,   6,
+                PMES,   1
+            }
+
+            Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
+            {
+                PMEE = Arg0
+            }
+
+            Method (GPEH, 0, NotSerialized)
+            {
+                If ((DVID == 0xFFFF))
+                {
+                    Return (Zero)
+                }
+
+                If ((PMEE && PMES))
+                {
+                    PMES = One
+                    Notify (EH02, 0x02) // Device Wake
+                }
+
+                Return (Zero)
+            }
+
+            Method (_DSM, 4, NotSerialized)  // ZDSM: Device-Specific Method
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer (One)
+                    {
+                         0x03                                             // .
+                    })
+                }
+
+                Return (Package (0x08)
+                {
+                    "kUSBSleepPowerSupply",
+                    0x13EC,
+                    "kUSBSleepPortCurrentLimit",
+                    0x0834,
+                    "kUSBWakePowerSupply",
+                    0x13EC,
+                    "kUSBWakePortCurrentLimit",
+                    0x0834
+                })
+            }
+
+            Device (HUBN)
+            {
+                Name (_ADR, Zero)  // _ADR: Address
+                Device (PR01)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+
+                    Device (PR11)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                    }
+
+                    Device (PR12)
+                    {
+                        Name (_ADR, 0x02)  // _ADR: Address
+                    }
+
+                    Device (PR13)
+                    {
+                        Name (_ADR, 0x03)  // _ADR: Address
+                    }
+
+                    Device (PR14)
+                    {
+                        Name (_ADR, 0x04)  // _ADR: Address
+                    }
+
+                    Device (PR15)
+                    {
+                        Name (_ADR, 0x05)  // _ADR: Address
+                    }
+
+                    Device (PR16)
+                    {
+                        Name (_ADR, 0x06)  // _ADR: Address
+                    }
+                }
+            }
+
+            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            {
+                Return (GPRW (0x0D, 0x04))
+            }
+        }
+
         Device (XHC)
         {
             Name (_ADR, 0x00140000)  // _ADR: Address
@@ -7738,72 +7956,126 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
                     Name (_ADR, 0x08)  // _ADR: Address
                 }
 
-                Device (HS09)
-                {
-                    Name (_ADR, 0x09)  // _ADR: Address
-                }
-
-                Device (HS10)
-                {
-                    Name (_ADR, 0x0A)  // _ADR: Address
-                }
-
-                Device (HS11)
-                {
-                    Name (_ADR, 0x0B)  // _ADR: Address
-                }
-
-                Device (HS12)
-                {
-                    Name (_ADR, 0x0C)  // _ADR: Address
-                }
-
-                Device (HS13)
-                {
-                    Name (_ADR, 0x0D)  // _ADR: Address
-                }
-
-                Device (HS14)
-                {
-                    Name (_ADR, 0x0E)  // _ADR: Address
-                }
-
                 Device (SSP1)
                 {
-                    Name (_ADR, 0x10)  // _ADR: Address
+                    Method (_ADR, 0, NotSerialized)  // _ADR: Address
+                    {
+                        Return ((XSPA + Zero))
+                    }
                 }
 
                 Device (SSP2)
                 {
-                    Name (_ADR, 0x11)  // _ADR: Address
-                }
-
-                Device (SSP3)
-                {
-                    Name (_ADR, 0x12)  // _ADR: Address
-                }
-
-                Device (SSP4)
-                {
-                    Name (_ADR, 0x13)  // _ADR: Address
-                }
-
-                Device (SSP5)
-                {
-                    Name (_ADR, 0x14)  // _ADR: Address
-                }
-
-                Device (SSP6)
-                {
-                    Name (_ADR, 0x15)  // _ADR: Address
-                }
-
-                Device (USBR)
-                {
                     Method (_ADR, 0, NotSerialized)  // _ADR: Address
                     {
-                        Return ((XHPC + One))
+                        Return ((XSPA + One))
                     }
+                }
+            }
+        }
+    }
+
+    If ((XHPC >= 0x0A))
+    {
+        Scope (_SB.PCI0.XHC.RHUB)
+        {
+            Device (HS09)
+            {
+                Name (_ADR, 0x09)  // _ADR: Address
+            }
+
+            Device (HS10)
+            {
+                Name (_ADR, 0x0A)  // _ADR: Address
+            }
+        }
+    }
+
+    If ((XHPC >= 0x0C))
+    {
+        Scope (_SB.PCI0.XHC.RHUB)
+        {
+            Device (HS11)
+            {
+                Name (_ADR, 0x0B)  // _ADR: Address
+            }
+
+            Device (HS12)
+            {
+                Name (_ADR, 0x0C)  // _ADR: Address
+            }
+        }
+    }
+
+    If ((XHPC >= 0x0E))
+    {
+        Scope (_SB.PCI0.XHC.RHUB)
+        {
+            Device (HS13)
+            {
+                Name (_ADR, 0x0D)  // _ADR: Address
+            }
+
+            Device (HS14)
+            {
+                Name (_ADR, 0x0E)  // _ADR: Address
+            }
+        }
+    }
+
+    If ((XRPC >= One))
+    {
+        Scope (_SB.PCI0.XHC.RHUB)
+        {
+            Device (USBR)
+            {
+                Method (_ADR, 0, NotSerialized)  // _ADR: Address
+                {
+                    Return ((XHPC + One))
+                }
+            }
+        }
+    }
+
+    If ((XSPC >= 0x04))
+    {
+        Scope (_SB.PCI0.XHC.RHUB)
+        {
+            Device (SSP3)
+            {
+                Method (_ADR, 0, NotSerialized)  // _ADR: Address
+                {
+                    Return ((XSPA + 0x02))
+                }
+            }
+
+            Device (SSP4)
+            {
+                Method (_ADR, 0, NotSerialized)  // _ADR: Address
+                {
+                    Return ((XSPA + 0x03))
+                }
+            }
+        }
+    }
+
+    If ((XSPC >= 0x06))
+    {
+        Scope (_SB.PCI0.XHC.RHUB)
+        {
+            Device (SSP5)
+            {
+                Method (_ADR, 0, NotSerialized)  // _ADR: Address
+                {
+                    Return ((XSPA + 0x04))
+                }
+            }
+
+            Device (SSP6)
+            {
+                Method (_ADR, 0, NotSerialized)  // _ADR: Address
+                {
+                    Return ((XSPA + 0x05))
                 }
             }
         }
@@ -14626,153 +14898,175 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
         }
     }
 
-    Scope (_SB.PCI0.XHC.RHUB.HS09)
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.HS09))
     {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        Scope (_SB.PCI0.XHC.RHUB.HS09)
         {
-            If (!PRTE (_ADR))
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                Return (PLD9) /* \_SB_.PCI0.XHC_.RHUB.PLD9 */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.HS10))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.HS10)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                Return (PLDA) /* \_SB_.PCI0.XHC_.RHUB.PLDA */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.HS11))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.HS11)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                Return (PLDB) /* \_SB_.PCI0.XHC_.RHUB.PLDB */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.HS12))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.HS12)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                Return (PLDC) /* \_SB_.PCI0.XHC_.RHUB.PLDC */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.HS13))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.HS13)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                Return (PLDD) /* \_SB_.PCI0.XHC_.RHUB.PLDD */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.HS14))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.HS14)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                Return (PLDE) /* \_SB_.PCI0.XHC_.RHUB.PLDE */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.USBR))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.USBR)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
                 Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
             }
 
-            Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                Return (PLDR) /* \_SB_.PCI0.XHC_.RHUB.PLDR */
             }
-
-            Return (PLD9) /* \_SB_.PCI0.XHC_.RHUB.PLD9 */
-        }
-    }
-
-    Scope (_SB.PCI0.XHC.RHUB.HS10)
-    {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            Return (PLDA) /* \_SB_.PCI0.XHC_.RHUB.PLDA */
-        }
-    }
-    Scope (_SB.PCI0.XHC.RHUB.HS11)
-    {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            Return (PLDB) /* \_SB_.PCI0.XHC_.RHUB.PLDB */
-        }
-    }
-
-    Scope (_SB.PCI0.XHC.RHUB.HS12)
-    {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            Return (PLDC) /* \_SB_.PCI0.XHC_.RHUB.PLDC */
-        }
-    }
-
-    Scope (_SB.PCI0.XHC.RHUB.HS13)
-    {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            Return (PLDD) /* \_SB_.PCI0.XHC_.RHUB.PLDD */
-        }
-    }
-
-    Scope (_SB.PCI0.XHC.RHUB.HS14)
-    {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            Return (PLDE) /* \_SB_.PCI0.XHC_.RHUB.PLDE */
-        }
-    }
-
-    Scope (_SB.PCI0.XHC.RHUB.USBR)
-    {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            Return (PLDR) /* \_SB_.PCI0.XHC_.RHUB.PLDR */
         }
     }
 
@@ -14780,7 +15074,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
     {
         Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
         {
-            If (!PRTE (_ADR))
+            If (!PRTE (_ADR ()))
             {
                 Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
             }
@@ -14790,7 +15084,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
 
         Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
         {
-            If (!PRTE (_ADR))
+            If (!PRTE (_ADR ()))
             {
                 Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
             }
@@ -14803,7 +15097,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
     {
         Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
         {
-            If (!PRTE (_ADR))
+            If (!PRTE (_ADR ()))
             {
                 Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
             }
@@ -14818,7 +15112,7 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
 
         Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
         {
-            If (!PRTE (_ADR))
+            If (!PRTE (_ADR ()))
             {
                 Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
             }
@@ -14832,146 +15126,795 @@ DefinitionBlock ("", "DSDT", 2, "ALASKA", "A M I", 0x00000088)
         }
     }
 
-      Scope (_SB.PCI0.XHC.RHUB.SSP3)
-      {
-          Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-          {
-              If (!PRTE (_ADR))
-              {
-                  Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-              }
-
-              If ((PFLV == 0x02))
-              {
-                  Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
-              }
-
-              Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-          }
-
-          Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-          {
-              If (!PRTE (_ADR))
-              {
-                  Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-              }
-
-              If ((PFLV == 0x02))
-              {
-                  Return (PLD3) /* \_SB_.PCI0.XHC_.RHUB.PLD3 */
-              }
-
-              Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-          }
-      }
-
-
-    Scope (_SB.PCI0.XHC.RHUB.SSP4)
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.SSP3))
     {
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        Scope (_SB.PCI0.XHC.RHUB.SSP3)
         {
-            If (!PRTE (_ADR))
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
             {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                If ((PFLV == 0x02))
+                {
+                    Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+                }
+
                 Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
             }
 
-            If ((PCHV () != LPTH))
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                If ((PFLV == 0x02))
+                {
+                    Return (PLD3) /* \_SB_.PCI0.XHC_.RHUB.PLD3 */
+                }
+
+                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.SSP4))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.SSP4)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                If ((PCHV () != LPTH))
+                {
+                    Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
+                }
+
+                If ((PFLV == 0x02))
+                {
+                    Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+                }
+
+                If ((((BID == 0x80) || (BID == 0x82)) || (BID == 0x83)))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                If ((PCHV () != LPTH))
+                {
+                    Return (PLD4) /* \_SB_.PCI0.XHC_.RHUB.PLD4 */
+                }
+
+                If ((PFLV == 0x02))
+                {
+                    Return (PLD4) /* \_SB_.PCI0.XHC_.RHUB.PLD4 */
+                }
+
+                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.SSP5))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.SSP5)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+            }
+
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+            {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
+
+                If ((PFLV == 0x02))
+                {
+                    Return (PLD9) /* \_SB_.PCI0.XHC_.RHUB.PLD9 */
+                }
+
+                Return (PLD3) /* \_SB_.PCI0.XHC_.RHUB.PLD3 */
+            }
+        }
+    }
+
+    If (CondRefOf (\_SB.PCI0.XHC.RHUB.SSP6))
+    {
+        Scope (_SB.PCI0.XHC.RHUB.SSP6)
+        {
+            Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+            {
+                If (!PRTE (_ADR ()))
+                {
+                    Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
+                }
+
+                If ((PFLV == 0x02))
+                {
+                    Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+                }
+
                 Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
             }
 
-            If ((PFLV == 0x02))
+            Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
             {
-                Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
-            }
+                If (!PRTE (_ADR ()))
+                {
+                    Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                }
 
-            If ((((BID == 0x80) || (BID == 0x82)) || (BID == 0x83)))
-            {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
+                If ((PFLV == 0x02))
+                {
+                    Return (PLDA) /* \_SB_.PCI0.XHC_.RHUB.PLDA */
+                }
 
-            Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            If (!PRTE (_ADR))
-            {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            If ((PCHV () != LPTH))
-            {
                 Return (PLD4) /* \_SB_.PCI0.XHC_.RHUB.PLD4 */
             }
-
-            If ((PFLV == 0x02))
-            {
-                Return (PLD4) /* \_SB_.PCI0.XHC_.RHUB.PLD4 */
-            }
-
-            Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
         }
     }
 
-    Scope (_SB.PCI0.XHC.RHUB.SSP5)
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR11)
     {
         Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
         {
-            If (!PRTE (_ADR))
+            Name (UPCP, Package (0x04)
             {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR11._UPC.UPCP */
         }
 
         Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
         {
-            If (!PRTE (_ADR))
+            Name (PLDP, Package (0x01)
             {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
-            }
-
-            If ((PFLV == 0x02))
-            {
-                Return (PLD9) /* \_SB_.PCI0.XHC_.RHUB.PLD9 */
-            }
-
-            Return (PLD3) /* \_SB_.PCI0.XHC_.RHUB.PLD3 */
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR11._PLD.PLDP */
         }
     }
 
-    Scope (_SB.PCI0.XHC.RHUB.SSP6)
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR12)
     {
         Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
         {
-            If (!PRTE (_ADR))
+            Name (UPCP, Package (0x04)
             {
-                Return (UPCN) /* \_SB_.PCI0.XHC_.RHUB.UPCN */
-            }
-
-            If ((PFLV == 0x02))
-            {
-                Return (UPC3) /* \_SB_.PCI0.XHC_.RHUB.UPC3 */
-            }
-
-            Return (UPCP) /* \_SB_.PCI0.XHC_.RHUB.UPCP */
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR12._UPC.UPCP */
         }
 
         Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
         {
-            If (!PRTE (_ADR))
+            Name (PLDP, Package (0x01)
             {
-                Return (PLDN) /* \_SB_.PCI0.XHC_.RHUB.PLDN */
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR12._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR13)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR13._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            CreateBitField (DerefOf (PLDP [Zero]), 0x40, VIS)
+            If ((PCHS == 0x02))
+            {
+                VIS &= Zero
             }
 
-            If ((PFLV == 0x02))
-            {
-                Return (PLDA) /* \_SB_.PCI0.XHC_.RHUB.PLDA */
-            }
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR13._PLD.PLDP */
+        }
+    }
 
-            Return (PLD4) /* \_SB_.PCI0.XHC_.RHUB.PLD4 */
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR14)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR14._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR14._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR15)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR15._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR15._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR16)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR16._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR16._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR17)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR17._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR17._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH01.HUBN.PR01.PR18)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR18._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH01.HUBN.PR01.PR18._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH02.HUBN.PR01.PR11)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR11._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR11._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH02.HUBN.PR01.PR12)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR12._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR12._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH02.HUBN.PR01.PR13)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR13._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR13._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH02.HUBN.PR01.PR14)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR14._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR14._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH02.HUBN.PR01.PR15)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR15._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR15._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.EH02.HUBN.PR01.PR16)
+    {
+        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+        {
+            Name (UPCP, Package (0x04)
+            {
+                0xFF,
+                0xFF,
+                Zero,
+                Zero
+            })
+            Return (UPCP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR16._UPC.UPCP */
+        }
+
+        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+        {
+            Name (PLDP, Package (0x01)
+            {
+                Buffer (0x10)
+                {
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Return (PLDP) /* \_SB_.PCI0.EH02.HUBN.PR01.PR16._PLD.PLDP */
+        }
+    }
+
+    Scope (_SB.PCI0.I2C0.ACD0)
+    {
+        Device (MIC0)
+        {
+            Name (_ADR, Zero)  // _ADR: Address
+            Name (_PLD, Package (0x03)  // _PLD: Physical Location of Device
+            {
+                ToPLD (
+                    PLD_Revision           = 0x2,
+                    PLD_IgnoreColor        = 0x1,
+                    PLD_Red                = 0x0,
+                    PLD_Green              = 0x0,
+                    PLD_Blue               = 0x0,
+                    PLD_Width              = 0x2,
+                    PLD_Height             = 0x2,
+                    PLD_UserVisible        = 0x0,
+                    PLD_Dock               = 0x0,
+                    PLD_Lid                = 0x0,
+                    PLD_Panel              = "FRONT",
+                    PLD_VerticalPosition   = "LOWER",
+                    PLD_HorizontalPosition = "LEFT",
+                    PLD_Shape              = "ROUND",
+                    PLD_GroupOrientation   = 0x0,
+                    PLD_GroupToken         = 0x0,
+                    PLD_GroupPosition      = 0x0,
+                    PLD_Bay                = 0x0,
+                    PLD_Ejectable          = 0x0,
+                    PLD_EjectRequired      = 0x0,
+                    PLD_CabinetNumber      = 0x0,
+                    PLD_CardCageNumber     = 0x0,
+                    PLD_Reference          = 0x0,
+                    PLD_Rotation           = 0x0,
+                    PLD_Order              = 0x0,
+                    PLD_VerticalOffset     = 0x5,
+                    PLD_HorizontalOffset   = 0x41)
+,
+                Buffer (0x20)
+                {
+                    /* 0000 */  0x8D, 0x33, 0x54, 0x84, 0x9E, 0x12, 0x52, 0x40,  // .3T...R@
+                    /* 0008 */  0x8C, 0x21, 0x37, 0x5C, 0x01, 0x2B, 0x3A, 0xB7,  // .!7\.+:.
+                    /* 0010 */  0x00, 0x00, 0x00, 0x00, 0xCE, 0xFF, 0x56, 0xFF,  // ......V.
+                    /* 0018 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                },
+
+                Buffer (0x20)
+                {
+                    /* 0000 */  0x8E, 0x33, 0x54, 0x84, 0x9E, 0x12, 0x52, 0x40,  // .3T...R@
+                    /* 0008 */  0x8C, 0x21, 0x37, 0x5C, 0x01, 0x2B, 0x3A, 0xB7,  // .!7\.+:.
+                    /* 0010 */  0x52, 0xE1, 0xAE, 0x1E, 0x00, 0x00, 0x00, 0x00,  // R.......
+                    /* 0018 */  0x50, 0x00, 0x20, 0x4E, 0x00, 0x00, 0x00, 0x00   // P. N....
+                }
+            })
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                If ((BID == 0x31))
+                {
+                    Return (0x0F)
+                }
+                Else
+                {
+                    Return (Zero)
+                }
+            }
+        }
+
+        Device (MIC1)
+        {
+            Name (_ADR, One)  // _ADR: Address
+            Name (_PLD, Package (0x02)  // _PLD: Physical Location of Device
+            {
+                ToPLD (
+                    PLD_Revision           = 0x2,
+                    PLD_IgnoreColor        = 0x1,
+                    PLD_Red                = 0x0,
+                    PLD_Green              = 0x0,
+                    PLD_Blue               = 0x0,
+                    PLD_Width              = 0x2,
+                    PLD_Height             = 0x2,
+                    PLD_UserVisible        = 0x0,
+                    PLD_Dock               = 0x0,
+                    PLD_Lid                = 0x0,
+                    PLD_Panel              = "FRONT",
+                    PLD_VerticalPosition   = "LOWER",
+                    PLD_HorizontalPosition = "RIGHT",
+                    PLD_Shape              = "ROUND",
+                    PLD_GroupOrientation   = 0x0,
+                    PLD_GroupToken         = 0x0,
+                    PLD_GroupPosition      = 0x1,
+                    PLD_Bay                = 0x0,
+                    PLD_Ejectable          = 0x0,
+                    PLD_EjectRequired      = 0x0,
+                    PLD_CabinetNumber      = 0x0,
+                    PLD_CardCageNumber     = 0x0,
+                    PLD_Reference          = 0x0,
+                    PLD_Rotation           = 0x0,
+                    PLD_Order              = 0x0,
+                    PLD_VerticalOffset     = 0x5,
+                    PLD_HorizontalOffset   = 0xA5)
+,
+                Buffer (0x20)
+                {
+                    /* 0000 */  0x8D, 0x33, 0x54, 0x84, 0x9E, 0x12, 0x52, 0x40,  // .3T...R@
+                    /* 0008 */  0x8C, 0x21, 0x37, 0x5C, 0x01, 0x2B, 0x3A, 0xB7,  // .!7\.+:.
+                    /* 0010 */  0x00, 0x00, 0x00, 0x00, 0x32, 0x00, 0x56, 0xFF,  // ....2.V.
+                    /* 0018 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                If ((BID == 0x31))
+                {
+                    Return (0x0F)
+                }
+                Else
+                {
+                    Return (Zero)
+                }
+            }
+        }
+
+        Device (MIC2)
+        {
+            Name (_ADR, 0x02)  // _ADR: Address
+            Name (_PLD, Package (0x03)  // _PLD: Physical Location of Device
+            {
+                ToPLD (
+                    PLD_Revision           = 0x2,
+                    PLD_IgnoreColor        = 0x1,
+                    PLD_Red                = 0x0,
+                    PLD_Green              = 0x0,
+                    PLD_Blue               = 0x0,
+                    PLD_Width              = 0x2,
+                    PLD_Height             = 0x2,
+                    PLD_UserVisible        = 0x0,
+                    PLD_Dock               = 0x0,
+                    PLD_Lid                = 0x0,
+                    PLD_Panel              = "BACK",
+                    PLD_VerticalPosition   = "UPPER",
+                    PLD_HorizontalPosition = "CENTER",
+                    PLD_Shape              = "ROUND",
+                    PLD_GroupOrientation   = 0x0,
+                    PLD_GroupToken         = 0x1,
+                    PLD_GroupPosition      = 0x0,
+                    PLD_Bay                = 0x0,
+                    PLD_Ejectable          = 0x0,
+                    PLD_EjectRequired      = 0x0,
+                    PLD_CabinetNumber      = 0x0,
+                    PLD_CardCageNumber     = 0x0,
+                    PLD_Reference          = 0x0,
+                    PLD_Rotation           = 0x0,
+                    PLD_Order              = 0x0,
+                    PLD_VerticalOffset     = 0x159,
+                    PLD_HorizontalOffset   = 0x73)
+,
+                Buffer (0x20)
+                {
+                    /* 0000 */  0x8D, 0x33, 0x54, 0x84, 0x9E, 0x12, 0x52, 0x40,  // .3T...R@
+                    /* 0008 */  0x8C, 0x21, 0x37, 0x5C, 0x01, 0x2B, 0x3A, 0xB7,  // .!7\.+:.
+                    /* 0010 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAA, 0x00,  // ........
+                    /* 0018 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                },
+
+                Buffer (0x20)
+                {
+                    /* 0000 */  0x8E, 0x33, 0x54, 0x84, 0x9E, 0x12, 0x52, 0x40,  // .3T...R@
+                    /* 0008 */  0x8C, 0x21, 0x37, 0x5C, 0x01, 0x2B, 0x3A, 0xB7,  // .!7\.+:.
+                    /* 0010 */  0xAE, 0x1E, 0x52, 0xE1, 0x00, 0x00, 0x00, 0x00,  // ..R.....
+                    /* 0018 */  0x50, 0x00, 0x20, 0x4E, 0x00, 0x00, 0x00, 0x00   // P. N....
+                }
+            })
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                If ((BID == 0x31))
+                {
+                    Return (0x0F)
+                }
+                Else
+                {
+                    Return (Zero)
+                }
+            }
+        }
+
+        Device (MIC3)
+        {
+            Name (_ADR, 0x03)  // _ADR: Address
+            Name (_PLD, Package (0x02)  // _PLD: Physical Location of Device
+            {
+                ToPLD (
+                    PLD_Revision           = 0x2,
+                    PLD_IgnoreColor        = 0x1,
+                    PLD_Red                = 0x0,
+                    PLD_Green              = 0x0,
+                    PLD_Blue               = 0x0,
+                    PLD_Width              = 0x2,
+                    PLD_Height             = 0x2,
+                    PLD_UserVisible        = 0x0,
+                    PLD_Dock               = 0x0,
+                    PLD_Lid                = 0x0,
+                    PLD_Panel              = "BACK",
+                    PLD_VerticalPosition   = "LOWER",
+                    PLD_HorizontalPosition = "CENTER",
+                    PLD_Shape              = "ROUND",
+                    PLD_GroupOrientation   = 0x0,
+                    PLD_GroupToken         = 0x1,
+                    PLD_GroupPosition      = 0x1,
+                    PLD_Bay                = 0x0,
+                    PLD_Ejectable          = 0x0,
+                    PLD_EjectRequired      = 0x0,
+                    PLD_CabinetNumber      = 0x0,
+                    PLD_CardCageNumber     = 0x0,
+                    PLD_Reference          = 0x0,
+                    PLD_Rotation           = 0x0,
+                    PLD_Order              = 0x0,
+                    PLD_VerticalOffset     = 0x5,
+                    PLD_HorizontalOffset   = 0x73)
+,
+                Buffer (0x20)
+                {
+                    /* 0000 */  0x8D, 0x33, 0x54, 0x84, 0x9E, 0x12, 0x52, 0x40,  // .3T...R@
+                    /* 0008 */  0x8C, 0x21, 0x37, 0x5C, 0x01, 0x2B, 0x3A, 0xB7,  // .!7\.+:.
+                    /* 0010 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x56, 0xFF,  // ......V.
+                    /* 0018 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   // ........
+                }
+            })
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                If ((((BID == 0x31) && (BREV >= One)) && (SKID ==
+                    0x0A)))
+                {
+                    Return (0x0F)
+                }
+                Else
+                {
+                    Return (Zero)
+                }
+            }
         }
     }
 
