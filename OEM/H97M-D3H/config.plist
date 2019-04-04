@@ -4,6 +4,16 @@
   <dict>
     <key>ACPI</key>
     <dict>
+      <key>FixHeaders</key>
+      <true/>
+      <key>DSDT</key>
+      <dict>
+        <key>Fixes</key>
+        <dict>
+          <key>FixRegions</key>
+          <true/>
+        </dict>
+      </dict>
       <key>DropTables</key>
       <array>
         <dict>
@@ -29,13 +39,6 @@
           <string>DMAR</string>
         </dict>
       </array>
-      <key>FixHeaders</key>
-      <true/>
-      <key>SSDT</key>
-      <dict>
-        <key>PluginType</key>
-        <true/>
-      </dict>
     </dict>
     <key>Boot</key>
     <dict>
