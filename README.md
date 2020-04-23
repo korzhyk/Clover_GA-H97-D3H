@@ -1,3 +1,4 @@
+# No longer mainteined, now OpenCore is supported [OpenCore_GA-H97-D3H](https://github.com/korzhyk/OpenCore_GA-H97-D3H)
 # Intro
 
 This is my working config for [CLOVER][Clover] of Hackintosh (Mojave 10.14)
